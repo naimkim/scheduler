@@ -77,7 +77,7 @@ int updateIndex(node_t* ndPtr)
 	            2. initialize the members of the nodes
 	            3. return the generated node (this is the header node, which can be the list itself)
 */
-void* list_genList(void)
+void* list_genList(void)//list»ý¼º,  
 {
 	node_t* ndPtr = genNode(); //make the header node
 	

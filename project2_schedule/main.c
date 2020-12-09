@@ -25,6 +25,9 @@ int main(int argc, char *argv[]) {
 	
 	//1. FILE pointer open & error handling
 	//fill code here ----
+	//me
+	FILE *list_genList();
+	list_genList = fopen("schedule.txt", "w");
 	
 	//initializing the list
 	printf("Reading the data files... \n");
@@ -34,7 +37,7 @@ int main(int argc, char *argv[]) {
 	
 	
 	//2. read from the file
-	while ( /* fill code here -- read from the file*/ )
+	while ( list_len(list) != 0 /* fill code here -- read from the file*/ )
 	{	
 		//fill code here -- generate genSchedInfo structure by genSchedInfo function
 		
@@ -53,9 +56,15 @@ int main(int argc, char *argv[]) {
 	{
 		//3. menu printing
 		//fill code here ---- 
-		
+		printf("1. print all the schedules\n");
+		printf("2. search for schedules in the month\n");
+		printf("3. search for schedules in the place\n");
+		printf("4. search for specific type schedule\n");
+		printf("5. exit");
 		//4. get option from keyboard
 		//fill code here ----
+		printf(" select an option : ");
+		scanf("%d", &option);
 		
 		
 		switch(option)

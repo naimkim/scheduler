@@ -26,13 +26,13 @@ char month_string[13][4] =
 
 //enum definitions
 typedef enum scheduleType {
-	drama=0; 		//드라마 
-	movie=1; 			//영화 
-	advertisement=2; 	//광고 
-	entertainment=3; 	//예능 
-	meeting=4;		//회의 
-	fitness=5;		//운동 
-	privacy=6;			//개인사 
+	drama=0, 		//드라마 
+	movie=1, 			//영화 
+	advertisement=2, 	//광고 
+	entertainment=3, 	//예능 
+	meeting=4,		//회의 
+	fitness=5,		//운동 
+	privacy=6,			//개인사 
 } scheduleType_e;
 
 
@@ -71,13 +71,6 @@ void sched_print(void* obj)
 	
 	return;
 }
-
-
-
-
-
-
-
 
 
 //generating a structure of scheduling information
