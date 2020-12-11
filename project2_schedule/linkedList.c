@@ -3,7 +3,7 @@
 #include "linkedList.h"
 
 #define LIST_END -1
-//#define LIST_FIRST 0
+#define LIST_FIRST 0
 
 //node definition for linked list
 typedef struct node{
