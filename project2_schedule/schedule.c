@@ -76,7 +76,6 @@ void sched_print(void* obj) //스케줄 이름, 유형, 날짜, 장소 출력
 //generating a structure of scheduling information
 void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 {
-	int i;
 	schedInfo_t* schedPtr;
 	
 	//error handler
@@ -85,15 +84,14 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 		return -1;
 	}
 	//allocate memory 
-	schedPtr = (schedInfo_t *) malloc(100*sizeof(schedInfo_t));
-	//set the member variables
-	*schedPtr = name;
-	*(schedPtr+1) = place;
-	*(schedPtr+2) = type;
-	*(schedPtr+3) = month;
-	*(schedPtr+4) = day;	
+	schedPtr = (schedInfo_t *) malloc(200*sizeof(schedInfo_t));
+	//set the member variables 멤버 변수 설정... 
+	//schedPtr->name = ;
+	//schedPtr->place = ;
+	schedPtr->type = type_string[MAX_TYPE][20];
+	schedPtr->month = month_string[13][4];
+	//schedPtr.day = ;
 	
-	free(schedPtr);
 	return ;
 }
 
@@ -107,11 +105,11 @@ float sched_getMonth(void* obj)
 	if (schedPtr == NULL) {
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
+	//month information 
+	void* sched_genSchedInfo(schedPtr);
 	
-	void* sched_genSchedInfo(schedPtr+3);
-	//return (struct dStr*)dStr->data; 
-
-	return;	
+	return;
+	
 }
 
 
@@ -124,7 +122,8 @@ int sched_getType(void* obj)
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	void* sched_genSchedInfo(schedPtr+2);
+	
+	void* sched_genSchedInfo(schedPtr);
 	
 	return;	
 }
@@ -140,7 +139,7 @@ char* sched_getPlace(void* obj)
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	void* sched_genSchedInfo(schedPtr+1);
+	void* sched_genSchedInfo(schedPlace);
 	
 	return;
 }
@@ -148,13 +147,29 @@ char* sched_getPlace(void* obj)
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
-	schedInfo_t* schedPtr = (schedInfo_t*)obj;
+	scheduleType_e schedType;
 	
-	if (schedPtr == NULL) {
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+	switch(schedType)
+	{
+		case drama:
+			typeName = 0;
+		case movie:
+			typeName = 1;
+		case advertisement:
+			typeName = 2;
+		case entertainment:
+			typeName = 3;
+		case meeting:
+			typeName = 4;
+		case fitness:
+			typeName = 5;
+		case privacy:
+			typeName = 6;
+		default:
+			typeName = 7;
+			break;
+		
 	}
-	
-	void* sched_genSchedInfo(schedPtr+3);
 	
 	return;
 }
