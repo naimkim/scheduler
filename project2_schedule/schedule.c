@@ -48,16 +48,21 @@ typedef struct schedInfo
 } schedInfo_t;
 
 
-void sched_printTypes(void) //스케줄 유형 번호  
+void sched_printTypes(void) //스케줄 유형 번호  print
 {
-	int i;
+	int i=0;
 	
-	for (i=0;i<MAX_TYPE;i++) {
-		printf("- %s\n", i, type_string[i]);
+
+	while(i<MAX_TYPE) 
+	{
+		printf("- %s\n", type_string[i]);
+		i++;
+		
 	}
+	
 }
 
-void sched_print(void* obj) //스케줄 이름, 유형, 날짜, 장소 출력  
+void sched_print(void* obj) 
 {
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
@@ -79,20 +84,24 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	schedInfo_t* schedPtr;
 	
 	//error handler
-	if (schedPtr == NULL) {
+	if (schedPtr == NULL)
+	{
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
-		return -1;
 	}
+	
 	//allocate memory 
 	schedPtr = (schedInfo_t *) malloc(200*sizeof(schedInfo_t));
-	//set the member variables 멤버 변수 설정... 
-	//schedPtr->name = ;
-	//schedPtr->place = ;
-	schedPtr->type = type_string[MAX_TYPE][20];
-	schedPtr->month = month_string[13][4];
-	//schedPtr.day = ;
 	
-	return ;
+	//set the member variables 멤버 변수 설정... 
+	*schedPtr->name;
+	*(schedPtr+1)->place;
+	(schedPtr+2)->type;
+	(schedPtr+3)->month;
+	(schedPtr+4)->day;
+	
+	free(schedPtr);
+	
+	return (void*)schedPtr ;
 }
 
 
@@ -100,15 +109,21 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 //get month information from the scheduler info structure 스케줄정보 구조체로 부터  
 float sched_getMonth(void* obj)
 {
+	int x;
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
 	if (schedPtr == NULL) {
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
+	
 	//month information 
+	schedPtr = schedPtr + 3;
+	
 	void* sched_genSchedInfo(schedPtr);
 	
-	return;
+	schedPtr = month_string[13][4];
+	
+	return x;
 	
 }
 
@@ -122,10 +137,13 @@ int sched_getType(void* obj)
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
+	schedPtr = schedPtr + 2;
 	
 	void* sched_genSchedInfo(schedPtr);
 	
-	return;	
+	schedPtr = type_string[schedPtr->type];
+	
+	return ;	
 }
 
 
@@ -139,15 +157,18 @@ char* sched_getPlace(void* obj)
 		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
 	}
 	
-	void* sched_genSchedInfo(schedPlace);
+	schedPtr = schedPtr + 1 ;
 	
-	return;
+	void* sched_genSchedInfo(schedPtr);
+	
+	return (void*)schedPtr ;
 }
 
 //convert the name of the type into the enum(integer) value
 int sched_convertType(char* typeName)
 {
 	scheduleType_e schedType;
+	
 	
 	switch(schedType)
 	{
@@ -171,6 +192,7 @@ int sched_convertType(char* typeName)
 		
 	}
 	
-	return;
+	return typeName;
+
 }
 

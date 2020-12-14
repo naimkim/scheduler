@@ -73,10 +73,10 @@ int main(int argc, char *argv[]) {
 		scanf("%d", &option);
 		
 		//error handling
-		if((option>5)||(option<1))
+	 	if ((option>5)||(option<1))
 		{
-		printf("not exist\n");
-		continue;
+			printf("not exist\n");
+			continue;
 		}
 					
 			switch(option)
@@ -84,91 +84,96 @@ int main(int argc, char *argv[]) {
 				case 1: //print all the schedules
 					printf("printing all the schedules in the scheduler.....\n\n\n");
 				
+					if(cnt <list_len(list)) //every schedule printf
+					{
 					ndPtr = list;
-						while (list_isEndNode(ndPtr) == 0)
-						{
-						//file code here -- print count and each scheduling info element
-						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
-						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-				
-						printf("---------------------------\n");
-						printf("%d", cnt);
-						sched_print(ndPtr); 
-						//fill code this part - end
-						fclose(ndPtr);
-						cnt++;
-						}
-				
+					while (list_isEndNode(ndPtr) == 0)
+					{
+					//file code here -- print count and each scheduling info element
+					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
+					printf("---------------------------\n");
+					printf("%d", cnt);
+						
+					sched_print(ndPtr); 	
+					cnt++;
+					//fill code this part - end
+					fclose(ndPtr);
+					}
+					}
 				break;
 				
 				case 2:
 					printf("which month ? : ");
 					scanf("%i", &month);
 				
+					if( sched_getMonth(ndPtr) == month) 
+					{
 					ndPtr = list;
-						while (list_isEndNode(ndPtr) == 0)
-						{
-							//file code here -- print scheduling info elements matching to the month
-						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
-						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
+					while (list_isEndNode(ndPtr) == 0)
+					{
+					//file code here -- print scheduling info elements matching to the month						
+					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
 		
-						if( sched_getMonth(ndPtr) == month) 
-						{
-						printf("---------------------------\n");
-						printf("%d", cnt);
-				
-						sched_print(ndPtr); 	
-						}
-					
-						//fill code this part - end
-						fclose(ndPtr);					
-						cnt++;
-						}
+					printf("---------------------------\n");
+					printf("%d", cnt);
+					sched_print(ndPtr); 
+					cnt++;		
+					//fill code this part - end
+					fclose(ndPtr);					
+					}
+					}
 				
 				break;
 				
 				case 3:
 					printf("which place ? : ");
 					scanf("%s", place);
-				
-					ndPtr = list;
-						while (list_isEndNode(ndPtr) == 0)
-						{
-						//file code here -- print scheduling info elements matching to the place
-						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
-						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-				
-						//sched_getplace?
-						if( sched_getPlace(ndPtr) == place)  
-						{		
-						printf("---------------------------\n");
-						printf("%d", cnt);
-						sched_print(ndPtr); 	
-						}
 					
-						//fill code this part - end
-						fclose(ndPtr);					
-						cnt++;
-						}
+					//sched_getplace?
+					if( sched_getPlace(ndPtr) == place) 
+					{ 
+					ndPtr = list;
+					while (list_isEndNode(ndPtr) == 0)
+					{
+					//file cod here -- print scheduling info elements matching to the place
+					ndPtr = list_getNextNd(ndPtr); //get the next node from the list
+					schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)			
+		
+					printf("---------------------------\n");
+					printf("%d", cnt);
+					sched_print(ndPtr);
+					cnt++; 	
+					//fill code this part - end
+					fclose(ndPtr);					
+					}
+					}
 				
 				break;
 				
 				case 4:
 					printf("which type ?\n");
+					sched_printTypes();
 					printf("your choice : ");
 					scanf("%s", typeName);
+					
 					//typeName is string 
-					if ((sched_convertType(typeName) >= 0) && (sched_convertType(typeName) <= 6) )/* fill code here -- convert the type and check if the type is valid */
+					if ((sched_convertType(typeName) >= '0') && (sched_convertType(typeName) <= '6') )/* fill code here -- convert the type and check if the type is valid */
 					{
 					ndPtr = list;
 						while (list_isEndNode(ndPtr) == 0)
 						{
-						//file code here -- print scheduling info elements matching to the place
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
 						schedInfo = list_getNdObj(ndPtr); //get the object (scheduling info)
-
-						sched_printTypes();
-						sched_print(ndPtr);
+						
+						if( (sched_getType(ndPtr))== (sched_convertType(typeName)) ) 
+						{		
+						printf("---------------------------\n");
+						printf("%d", cnt);
+						
+						sched_print(ndPtr); 	
+						}
 						//fill code this part - end
 						fclose(ndPtr);
 						}
