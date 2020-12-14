@@ -67,7 +67,7 @@ void sched_print(void* obj)
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
 	if (schedPtr == NULL) {
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the schedule Info0! (object is NULL)\n");
 	}
 	
 	printf("Schedule Name : %s (%s)\n", schedPtr->name, type_string[schedPtr->type]);
@@ -86,7 +86,7 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 	//error handler
 	if (schedPtr == NULL)
 	{
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the schedule Info1! (object is NULL)\n");
 	}
 	
 	//allocate memory 
@@ -110,10 +110,11 @@ void* sched_genSchedInfo(char* name, char* place, int type, int month, int day)
 float sched_getMonth(void* obj)
 {
 	int x;
+	
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
 	if (schedPtr == NULL) {
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the schedule Info2! (object is NULL)\n");
 	}
 	
 	//month information 
@@ -121,29 +122,29 @@ float sched_getMonth(void* obj)
 	
 	void* sched_genSchedInfo(schedPtr);
 	
-	schedPtr = month_string[13][4];
+	month_string[schedPtr->month][4] = x;
 	
-	return x;
-	
+	return x ;	
 }
 
 
 //get type information from the scheduler info structure
 int sched_getType(void* obj)
 {
+	int y;
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
 	if (schedPtr == NULL) {
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the schedule Info3! (object is NULL)\n");
 	}
 	
 	schedPtr = schedPtr + 2;
 	
 	void* sched_genSchedInfo(schedPtr);
 	
-	schedPtr = type_string[schedPtr->type];
+	type_string[schedPtr->type][20] = y;
 	
-	return ;	
+	return y ;	
 }
 
 
@@ -154,7 +155,7 @@ char* sched_getPlace(void* obj)
 	schedInfo_t* schedPtr = (schedInfo_t*)obj;
 	
 	if (schedPtr == NULL) {
-		printf("[ERROR] failed to print the schedule Info! (object is NULL)\n");
+		printf("[ERROR] failed to print the schedule Info4! (object is NULL)\n");
 	}
 	
 	schedPtr = schedPtr + 1 ;
@@ -169,7 +170,7 @@ int sched_convertType(char* typeName)
 {
 	scheduleType_e schedType;
 	
-	
+
 	switch(schedType)
 	{
 		case drama:

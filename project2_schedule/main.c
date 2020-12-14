@@ -83,10 +83,11 @@ int main(int argc, char *argv[]) {
 			{
 				case 1: //print all the schedules
 					printf("printing all the schedules in the scheduler.....\n\n\n");
-				
+					
+					ndPtr = list;
+					
 					if(cnt <list_len(list)) //every schedule printf
 					{
-					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
 					//file code here -- print count and each scheduling info element
@@ -106,10 +107,10 @@ int main(int argc, char *argv[]) {
 				case 2:
 					printf("which month ? : ");
 					scanf("%i", &month);
-				
+					
+					ndPtr = list;
 					if( sched_getMonth(ndPtr) == month) 
 					{
-					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
 					//file code here -- print scheduling info elements matching to the month						
@@ -131,10 +132,10 @@ int main(int argc, char *argv[]) {
 					printf("which place ? : ");
 					scanf("%s", place);
 					
+					ndPtr = list;
 					//sched_getplace?
 					if( sched_getPlace(ndPtr) == place) 
 					{ 
-					ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0)
 					{
 					//file cod here -- print scheduling info elements matching to the place
@@ -158,10 +159,10 @@ int main(int argc, char *argv[]) {
 					printf("your choice : ");
 					scanf("%s", typeName);
 					
+					ndPtr = list;
 					//typeName is string 
 					if ((sched_convertType(typeName) >= '0') && (sched_convertType(typeName) <= '6') )/* fill code here -- convert the type and check if the type is valid */
 					{
-					ndPtr = list;
 						while (list_isEndNode(ndPtr) == 0)
 						{
 						ndPtr = list_getNextNd(ndPtr); //get the next node from the list
